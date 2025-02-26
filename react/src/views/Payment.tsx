@@ -64,7 +64,7 @@ const Payment = () => {
             const response = await axiosClient.post("/activate-premium");
             console.log("Response from server:", response.data);
             toast.success("Premium feature activated successfully!");
-            navigate("/dashboard"); 
+            navigate("/"); 
             window.location.reload(); 
         } catch (error) {
             console.error("Error activating premium:", error);

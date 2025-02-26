@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         >
             <div className="space-y-2">
                 <SidebarLink
-                    to="/dashboard"
+                    to="/"
                     Icon={LayoutDashboard}
                     label="Dashboard"
                     isOpen={isOpen}

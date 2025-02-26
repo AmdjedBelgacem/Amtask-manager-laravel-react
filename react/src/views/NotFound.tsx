@@ -8,7 +8,7 @@ const NotFound = () => {
                 Oops! The page you are looking for does not exist.
             </p>
             <Link
-                to="/dashboard"
+                to="/"
                 className="px-8 py-3 bg-white text-purple-900 font-semibold rounded-lg shadow-lg hover:bg-purple-100 transition-all duration-300 transform hover:scale-105"
             >
                 Go to Dashboard
