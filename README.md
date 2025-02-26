@@ -118,6 +118,9 @@ CI/CD pipeline is set up using GitHub Actions. This runs tests and checks code q
 
 ## Frontend (React)
 
+**Running Endpoint:**
+You can access the frontend using the following url: https://task-manager-yxfl08yhn-amdjedbelgacems-projects.vercel.app/
+
 ### Setup
 
 **Cloning the Repository:**
@@ -149,6 +152,8 @@ Users can register or log in using the forms provided. This interacts with the b
 
 **Task Management:**
 Users can create, update, and delete tasks. The frontend sends requests to the backend’s task management endpoints.
+
+Users are able to drag and drop tasks and change their location. The frontend sends requests to the backend’s task management endpoints. 
 
 **Folder Management:**
 Users can create folders and add/remove tasks from them. This is handled through the backend’s folder management endpoints.
