@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { TooltipProps } from "../../lib/interfaces";
 
 const Tooltip = ({ content, children }: TooltipProps) => {

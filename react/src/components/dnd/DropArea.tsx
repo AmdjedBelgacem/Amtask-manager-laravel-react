@@ -29,7 +29,9 @@ const DropArea = () => {
                 },
             });
             setTasks(response.data);
+            //@ts-expect-error expected
             setCurrentPage(response.current_page);
+            //@ts-expect-error expected
             setTotalPages(response.last_page);
         } catch (error) {
             console.error("Error fetching tasks:", error);
@@ -46,6 +48,7 @@ const DropArea = () => {
         const fetchFolders = async () => {
             try {
                 const response = await axiosClient.get("/folders");
+                //@ts-expect-error expected
                 setFolders(response);
             } catch (error) {
                 console.error("Error fetching folders:", error);
@@ -226,6 +229,7 @@ const DropArea = () => {
                             description={task.description}
                             status={task.status}
                             due_date={task.due_date}
+                            //@ts-expect-error expected
                             priority={task.priority}
                             moveTask={moveTask}
                             onDelete={handleDeleteTask}

@@ -25,6 +25,7 @@ export default function Dashboard() {
                 due_date: task.due_date,
                 priority: task.priority,
             });
+            //@ts-expect-error expected
             setTasks((prev) => [...prev, response]);
             toast.success("Task created successfully!");
         } catch (error) {

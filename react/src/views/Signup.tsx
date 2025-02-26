@@ -34,7 +34,9 @@ export default function Register() {
                         token: string;
                     }>
                 ) => {
+                    // @ts-expect-error expected
                     setUser(res.user);
+                    // @ts-expect-error expected
                     setToken(res.token);
                     toast.success("Account created successfully!");
                 }

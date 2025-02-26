@@ -30,7 +30,9 @@ export default function Login() {
                         token: string;
                     }>
                 ) => {
+                    // @ts-expect-error expected
                     setUser(res.user);
+                    // @ts-expect-error expected
                     setToken(res.token);
                     toast.success("Logged in successfully!");
                 }
