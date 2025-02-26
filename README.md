@@ -129,7 +129,7 @@ You can access the frontend using the following url: https://task-manager-yxfl08
 First, clone the frontend repository:
 
 ```sh
-git clone https://github.com/yourusername/task-manager-frontend.git
+git clone https://github.com/AmdjedBelgacem/task-manager-frontend.git
 cd task-manager-frontend
 ```
 
