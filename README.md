@@ -39,6 +39,8 @@ php artisan serve
 
 And there you have it! Your backend is up and running.
 
+or you can access backend through production url at: amtask-manager-laravel-react.vercel.app
+
 ### API Endpoints
 
 **User Authentication:**
