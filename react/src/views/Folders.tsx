@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../lib/axios-client";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { showToast } from "../components/ui/Toast";
+import { PlusCircle } from "lucide-react";
 
 const Folders = () => {
     const { currentUser } = useStateContext();
@@ -12,13 +13,14 @@ const Folders = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (currentUser?.is_premium) {
             fetchFolders();
         }
     }, [currentUser]);
 
     const fetchFolders = async () => {
+        setIsLoading(true);
         try {
             const response = await axiosClient.get("/folders");
             const foldersWithTaskCount = await Promise.all(
@@ -37,6 +39,8 @@ const Folders = () => {
             setFolders(foldersWithTaskCount);
         } catch (error) {
             console.error("Error fetching folders:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -99,7 +103,7 @@ const Folders = () => {
                             disabled={isLoading}
                             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
                         >
-                            {isLoading ? "Creating..." : "Create Folder"}
+                            {isLoading ? "Creating..." : <PlusCircle />}
                         </button>
                     </div>
                 </form>
@@ -110,12 +114,27 @@ const Folders = () => {
                     </Link>
                 </div>
             )}
-            {folders.length > 0 ? (
+            {isLoading ? (
+                <div className="flex justify-center items-center h-64">
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="w-12 h-12 border-4 border-t-blue-500 border-gray-200 rounded-full"
+                    />
+                    <motion.span
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="ml-4 text-gray-600 text-lg font-medium"
+                    >
+                        Loading folders...
+                    </motion.span>
+                </div>
+            ) : folders.length > 0 ? (
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     <AnimatePresence>
                         {folders.map((folder) => (
                             <motion.li
-                            //@ts-expect-error expected
+                                //@ts-expect-error expected
                                 key={folder.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -131,7 +150,7 @@ const Folders = () => {
                                         {folder.name}
                                     </h2>
                                     <p className="text-sm text-gray-600">
-                                           {/**@ts-expect-error expected */}
+                                        {/**@ts-expect-error expected */}
                                         {folder.taskCount} tasks
                                     </p>
                                 </div>

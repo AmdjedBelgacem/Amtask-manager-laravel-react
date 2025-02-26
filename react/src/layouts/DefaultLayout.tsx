@@ -26,7 +26,7 @@ export default function DefaultLayout() {
     return (
         <DndProvider backend={HTML5Backend}>
             <ToastContainer />
-            <div className="flex w-full h-screen bg-gray-50">
+            <div className="flex h-screen bg-gray-50">
                 <div className="md:hidden fixed top-4 left-4 z-50">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
@@ -48,7 +48,9 @@ export default function DefaultLayout() {
                         </svg>
                     </button>
                 </div>
-                <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+                <div>
+                    <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+                </div>
                 <main className="flex-grow p-4 overflow-y-auto">
                     <Outlet />
                 </main>

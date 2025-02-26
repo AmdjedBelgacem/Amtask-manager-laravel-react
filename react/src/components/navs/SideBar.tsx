@@ -10,7 +10,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     const { currentUser } = useStateContext();
     return (
         <motion.aside
-            className="fixed inset-0 md:relative bg-white shadow-lg border border-gray-200 rounded-lg flex flex-col justify-between p-2 overflow-hidden h-full z-40 md:z-0"
+            className="fixed inset-0 md:relative bg-white shadow-lg border border-gray-200 rounded-lg flex flex-col justify-between p-2 overflow-hidden h-full z-40 md:z-0 w-20"
             variants={sidebarVariants}
             animate={isOpen ? "open" : "closed"}
             initial={false}

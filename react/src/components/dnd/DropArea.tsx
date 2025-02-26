@@ -203,20 +203,48 @@ const DropArea = () => {
 
             {isLoading ? (
                 <motion.div
-                    className="flex justify-center items-center h-64"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    className="flex justify-center items-center h-64 bg-gray-100/50 backdrop-blur-sm rounded-lg"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
                 >
                     <motion.div
-                        className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{
-                            repeat: Infinity,
-                            duration: 1,
-                            ease: "linear",
-                        }}
-                    />
+                        className="relative flex items-center justify-center"
+                    >
+                        <motion.div
+                            className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full"
+                            animate={{ rotate: 360 }}
+                            transition={{
+                                repeat: Infinity,
+                                duration: 1,
+                                ease: "linear",
+                            }}
+                        />
+                        <motion.div
+                            className="absolute w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full"
+                            animate={{ rotate: -360 }}
+                            transition={{
+                                repeat: Infinity,
+                                duration: 1.5,
+                                ease: "linear",
+                            }}
+                        />
+                        <motion.span
+                            className="absolute text-blue-600 text-lg font-semibold"
+                            animate={{ opacity: [0.5, 1, 0.5] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                            Loading
+                        </motion.span>
+                    </motion.div>
+                    <motion.p
+                        className="ml-4 text-gray-600 text-lg font-medium"
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                    >
+                        Fetching your tasks...
+                    </motion.p>
                 </motion.div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

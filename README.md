@@ -179,3 +179,5 @@ mock payment gateway had been added to simulate premium features. This allows us
 ## Deployment
 
 The application is deployed on Vercel. You can access it [here](will be updated).
+
+
