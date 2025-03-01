@@ -65,23 +65,21 @@ const Folders = () => {
     };
 
     const handleDeleteFolder = async (folderId: string) => {
-        if (window.confirm("Are you sure you want to delete this folder?")) {
-            try {
-                await axiosClient.delete(`/folders/${folderId}`);
-                setFolders((prev) =>
-                    // @ts-expect-error expected
-                    prev.filter((folder) => folder.id !== folderId)
-                );
-                showToast("success", "Folder deleted successfully!");
-            } catch (error) {
-                console.error("Error deleting folder:", error);
-                showToast("error", "Failed to delete folder.");
-            }
+        try {
+            await axiosClient.delete(`/folders/${folderId}`);
+            setFolders((prev) =>
+                // @ts-expect-error expected
+                prev.filter((folder) => folder.id !== folderId)
+            );
+            showToast("success", "Folder deleted successfully!");
+        } catch (error) {
+            console.error("Error deleting folder:", error);
+            showToast("error", "Failed to delete folder.");
         }
     };
 
     const handleFolderClick = (folderId: string) => {
-        navigate(`/folders/${folderId}`);
+        navigate(`/premium/folders/${folderId}`);
     };
 
     return (
@@ -109,7 +107,7 @@ const Folders = () => {
                 </form>
             ) : (
                 <div className="mb-6">
-                    <Link to="/premium" className="text-blue-500">
+                    <Link to="/premium-presentation" className="text-blue-500">
                         Upgrade to premium to create folders.
                     </Link>
                 </div>
@@ -118,7 +116,11 @@ const Folders = () => {
                 <div className="flex justify-center items-center h-64">
                     <motion.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                        }}
                         className="w-12 h-12 border-4 border-t-blue-500 border-gray-200 rounded-full"
                     />
                     <motion.span

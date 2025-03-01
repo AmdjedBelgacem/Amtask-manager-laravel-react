@@ -8,7 +8,7 @@ const Payment = () => {
     const { currentUser } = useStateContext();
     const navigate = useNavigate();
     if (currentUser?.is_premium) {
-        navigate("/premium");
+        navigate("/premium/folders");
     }
     const [isLoading, setIsLoading] = useState(false);
     const [cardData, setCardData] = useState({

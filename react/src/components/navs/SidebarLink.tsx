@@ -43,7 +43,7 @@ disabled,
                 <div
                     className={`flex items-center p-2 transition-colors duration-200 cursor-pointer opacity-50 rounded-md`}
                     style={{ textDecoration: "none", overflow: "hidden" }}
-                    onClick={() => navigate("/premium")}
+                    onClick={() => navigate("/premium-presentation")}
                 >
                     <span className="flex items-center justify-center w-6 h-6">
                         <IconComponent className="w-5 h-5 text-gray-600" />

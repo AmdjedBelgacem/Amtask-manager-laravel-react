@@ -9,6 +9,7 @@ import Folders from "./views/Folders";
 import FolderTasks from "./views/FolderTasks";
 import Premium from "./views/Premium";
 import NotFound from "./views/NotFound";
+import PremiumLayout from "./layouts/PremiumLayout";
 
 const router = createBrowserRouter([
     {
@@ -20,20 +21,26 @@ const router = createBrowserRouter([
                 element: <Dashboard />,
             },
             {
-                path: "/folders",
-                element: <Folders />,
-            },
-            {
-                path: "/folders/:folderId",
-                element: <FolderTasks />,
-            },
-            {
                 path: "/payment",
                 element: <Payment />,
             },
             {
-                path: "/premium",
+                path: "/premium-presentation",
                 element: <Premium />,
+            },
+            {
+                path: "/premium",
+                element: <PremiumLayout />,
+                children: [
+                    {
+                        path: "/premium/folders",
+                        element: <Folders />,
+                    },
+                    {
+                        path: "/premium/folders/:folderId",
+                        element: <FolderTasks />,
+                    },
+                ],
             },
         ],
     },
@@ -53,7 +60,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <NotFound/>
+        element: <NotFound />,
     },
 ]);
 

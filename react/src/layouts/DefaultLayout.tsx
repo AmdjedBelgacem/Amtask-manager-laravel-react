@@ -13,7 +13,6 @@ export default function DefaultLayout() {
 
     useEffect(() => {
         axiosClient.get("/user").then((res) => {
-            console.log(res);
             //@ts-expect-error expected
             setUser(res);
         });

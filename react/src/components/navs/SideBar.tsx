@@ -25,7 +25,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                     isOpen={isOpen}
                 />
                 <SidebarLink
-                    to="/folders"
+                    to="/premium/folders"
                     Icon={Folder}
                     label="Folders"
                     isOpen={isOpen}

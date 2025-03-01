@@ -70,7 +70,7 @@ const UserButton = ({ isOpen }: { isOpen: boolean }) => {
                         <button
                             className="block w-full  py-2 px-4  hover:bg-gray-900 transition-colors duration-200 rounded-lg cursor-pointer text-center bg-black text-white font-semibold"
                             onClick={() => {
-                                navigate("/premium");
+                                navigate("/premium-presentation");
                             }}
                         >
                             Become a premium member

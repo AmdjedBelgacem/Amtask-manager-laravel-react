@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "rewrites": [
+        {
+            "source": "/premium/folders",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/premium/folders/:folderId",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}

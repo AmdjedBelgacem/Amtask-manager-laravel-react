@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useStateContext } from "../contexts/ContextProvider";
 export default function Premium() {
+    const { currentUser } = useStateContext();
     const navigate = useNavigate();
+
+    if (currentUser?.is_premium) {
+        navigate("/premium/folders");
+    }   
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 py-12 px-4 sm:px-6 lg:px-8 rounded-lg">
             <div className="max-w-4xl mx-auto text-center"></div>

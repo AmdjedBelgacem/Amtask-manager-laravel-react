@@ -21,32 +21,29 @@ const FolderTasks = () => {
 
     const fetchFolderTasks = async (page = 1, search = "") => {
         try {
-            const folderResponse = await axiosClient.get(
-                `/folders/${folderId}`
-            );
+            const folderResponse = await axiosClient.get(`/folders/${folderId}`);
             // @ts-expect-error expected
-            setFolderName(folderResponse.name);
-
-            const tasksResponse = await axiosClient.get(
-                `/folders/${folderId}/tasks`,
-                {
-                    params: {
-                        page,
-                        search,
-                    },
-                }
-            );
-            const sortedTasks = tasksResponse.data.sort(
-                // @ts-expect-error expected
-                (a, b) => a.pivot.order - b.pivot.order
+            setFolderName(folderResponse.name || "Unnamed Folder");
+    
+            const tasksResponse = await axiosClient.get(`/folders/${folderId}/tasks`, {
+                params: { page, search },
+            });
+    
+            const tasksData = Array.isArray(tasksResponse) ? tasksResponse : tasksResponse.data || [];
+            const sortedTasks = tasksData.sort(
+                (a: Task, b: Task) => (a.pivot?.order || 0) - (b.pivot?.order || 0)
             );
             setTasks(sortedTasks);
             // @ts-expect-error expected
-            setCurrentPage(tasksResponse.current_page);
+            setCurrentPage(tasksResponse.current_page || 1);
             // @ts-expect-error expected
-            setTotalPages(tasksResponse.last_page);
-        } catch (error) {
-            console.error("Error fetching folder tasks:", error);
+            setTotalPages(tasksResponse.last_page || 1);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            console.error("Error fetching folder tasks:", error.response?.data || error.message);
+            setTasks([]);
+            setFolderName("Error loading folder");
+            showToast("error", error.response?.data?.message || "Failed to load folder tasks.");
         }
     };
 
